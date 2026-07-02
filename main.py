@@ -102,7 +102,15 @@ def print_status():
             t_list4.append(t_obj.id)
         if t_obj.pos == 4:
             t_list5.append(t_obj.id)
-    print(e_list1, t_list1, "----", e_list2, t_list2, "----", e_list3, t_list3, "----", e_list4, t_list4, "----",e_list5, t_list5)
+    
+    count_space = len(GAME.enemy_track) + len(GAME.tower_track)
+    print("lane1")
+    print(f"0 : {e_list1}, {t_list1}")
+    print(f"1 : {e_list1}, {t_list1}")
+    print(f"2 : {e_list1}, {t_list1}")
+    print(f"3 : {e_list1}, {t_list1}")
+    print(f"4 : {e_list1}, {t_list1}")
+    print(f"BASE")
 
 GAME = Game()
 BASE = Base()
@@ -124,9 +132,6 @@ def main():
             print(f"Status : {GAME.status}")
             print(f"Turn : {GAME.turns}")
             print(f"Base Health: {BASE.health}")
-            count_space = len(GAME.enemy_track) + len(GAME.tower_track)
-            print("lane1")
-            print(" 0 " + " " * count_space + " 1 " + " " * count_space + " 2 "+ " " * count_space + " 3 "+ " " * count_space + " 4 "+ " " * count_space + " BASE ")
             print_status()
             print("\n")
             print("\n")
