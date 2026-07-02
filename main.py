@@ -1,5 +1,9 @@
 from poetry.console.commands import self
 
+Enemy_track = []
+Tower_track = []
+STATUS = "RUNNING"
+TURN = 0
 class Goblin:
     Counter_N = 0
     def __init__(self):
@@ -26,11 +30,13 @@ class Goblin:
 
 class Tower:
     Counter_N = 0
-    def __init__(self):
+    def __init__(self, position : int):
         Tower.Counter_N += 1
         self.id = "T"+str(Tower.Counter_N)
-        self.pos = 0
+        self.pos = position
         self.range = 1
+        print(f"Spawned { self.id } tower on lane1 at position {self.pos}")
+
 
     def place(self, index):
         self.pos = index
@@ -48,22 +54,33 @@ class Base:
     def __del__(self):
         pass
 
-def spawn_enemy(type : str):
+def spawn_enemy(types : str):
 
-    if type == "Goblin":
-        Goblin()
+    if types == "Goblin":
+        Enemy_track.append(Goblin())
 
+
+
+BASE = Base()
 def main():
     start = True
-    print("hello")
     while start:
         command = input()
         if command.startswith("Spawn"):
             enemy = command.split(" ")[2]
             spawn_enemy(enemy)
+            print(Enemy_track)
         if command.startswith("ADD_TOWER"):
             pos = command.split(" ")[2]
-            tower = Tower()
+            Tower(int(pos))
+        if command.startswith("STATUS"):
+            print(f"Status : {STATUS}")
+            print(f"Turn : {TURN}")
+            print(f"Base Health: {BASE.health}")
+            count_space = len(Enemy_track) + len(Tower_track)
+            print("lane1")
+            print(" 0 " + " " * count_space + " 1 " + " " * count_space + " 2 "+ " " * count_space + " 3 "+ " " * count_space + " 4 "+ " " * count_space + " BASE ")
+            
         if command.startswith("EXIT"):
             start = False
 
