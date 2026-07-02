@@ -30,7 +30,7 @@ class Goblin:
 
     def damage(self):
         self.health -= 1
-        if self.health < 0:
+        if self.health <= 0:
             del self
 
 
@@ -57,7 +57,7 @@ class Base:
 
     def damage(self):
         self.health -= 1
-        if self.health < 0:
+        if self.health <= 0:
             print("GAME OVER")
             del self
 
