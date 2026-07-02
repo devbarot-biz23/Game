@@ -65,7 +65,7 @@ class Base:
 
 def spawn_enemy(types : str):
 
-    if types == "Goblin":
+    if types == "goblin":
         GAME.enemy_track.append(Goblin())
 
 
@@ -110,12 +110,12 @@ def main():
     start = True
     while start:
         command = input()
-        if command.startswith("Spawn"):
+        if command.startswith("SPAWN"):
             enemy = command.split(" ")[2]
             spawn_enemy(enemy)
         if command.startswith("ADD_TOWER"):
             pos = command.split(" ")[2]
-            Tower(int(pos))
+            GAME.tower_track.append(Tower(int(pos)))
         if command.startswith("STATUS"):
             print(f"Status : {GAME.status}")
             print(f"Turn : {GAME.turns}")
