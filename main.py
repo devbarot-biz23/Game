@@ -113,9 +113,13 @@ def main():
         if command.startswith("SPAWN"):
             enemy = command.split(" ")[2]
             spawn_enemy(enemy)
+            print("\n")
+            print("\n")
         if command.startswith("ADD_TOWER"):
             pos = command.split(" ")[2]
             GAME.tower_track.append(Tower(int(pos)))
+            print("\n")
+            print("\n")
         if command.startswith("STATUS"):
             print(f"Status : {GAME.status}")
             print(f"Turn : {GAME.turns}")
@@ -124,6 +128,8 @@ def main():
             print("lane1")
             print(" 0 " + " " * count_space + " 1 " + " " * count_space + " 2 "+ " " * count_space + " 3 "+ " " * count_space + " 4 "+ " " * count_space + " BASE ")
             print_status()
+            print("\n")
+            print("\n")
         if command.startswith("EXIT"):
             start = False
         if command.startswith("RUN_TURN"):
@@ -134,7 +140,7 @@ def main():
                 for e_obj in GAME.enemy_track:
                     if e_obj.pos == t_obj.pos or e_obj.pos == t_obj.pos-1 or e_obj.pos == t_obj.pos+1:
                         e_obj.damage()
-                        print(f"{t_obj.id} attacked {e_obj.pos} for 1 damage, {e_obj.id} hp={e_obj.health}")
+                        print(f"{t_obj.id} attacked {e_obj.id} for 1 damage, {e_obj.id} hp={e_obj.health}")
                         break
             for e_obj in GAME.enemy_track:
                 if e_obj.pos == 5:
@@ -142,6 +148,8 @@ def main():
 
             for e_obj in GAME.enemy_track:
                 e_obj.move()
+            print("\n")
+            print("\n")
         else:
             pass
 
