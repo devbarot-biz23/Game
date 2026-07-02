@@ -18,19 +18,22 @@ class Goblin:
         self.speed = 1
         print(f"Spawned { self.id } goblin on lane1 at position {self.pos}")
 
+    def __del__(self):
+        pass
 
     def move(self):
         self.pos += self.pos
         if self.pos > 5:
             del self
+            return
+        print(f"{self.id} moved from {self.pos-1} to {self.pos}")
 
-    def health(self):
+    def damage(self):
         self.health -= 1
         if self.health < 0:
             del self
 
-    def __del__(self):
-        pass
+
 
 class Tower:
     Counter_N = 0
@@ -49,14 +52,16 @@ class Base:
     def __init__(self):
         self.health = 10
 
+    def __del__(self):
+        pass
+
     def damage(self):
         self.health -= 1
         if self.health < 0:
             print("GAME OVER")
             del self
 
-    def __del__(self):
-        pass
+
 
 def spawn_enemy(types : str):
 
@@ -86,7 +91,21 @@ def main():
             print(" 0 " + " " * count_space + " 1 " + " " * count_space + " 2 "+ " " * count_space + " 3 "+ " " * count_space + " 4 "+ " " * count_space + " BASE ")
         if command.startswith("EXIT"):
             start = False
+        if command.startswith("RUN_TURN"):
+            GAME.turns += 1
+            for t_obj in GAME.tower_track:
+                for e_obj in GAME.enemy_track:
+                    if e_obj.pos == t_obj.pos or e_obj.pos == t_obj.pos-1 or e_obj.pos == t_obj.pos+1:
+                        e_obj.damage()
+                        print(f"{t_obj.id} attacked {e_obj.pos} for 1 damage, {e_obj.id} hp={e_obj.health}")
+                        break
+            for e_obj in GAME.tower_track:
+                e_obj.move()
+            for e_obj in GAME.tower_track:
+                if e_obj.pos == 5:
+                    BASE.damage()
 
+            print(f"TURN : {GAME.turns} started")
 
 
 
