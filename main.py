@@ -17,6 +17,11 @@ class Goblin:
     def __del__(self):
         pass
 
+class Tower:
+    def __init__(self):
+        self.pos = 0
+        self.range = 1
+
 def spawn_enemy(pos : int, type : str):
     if type == "Goblin":
         Goblin()
